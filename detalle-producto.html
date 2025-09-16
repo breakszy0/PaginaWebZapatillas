@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalle Producto - ZapatillasWeb</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="bg-light">
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg bg-primary navbar-dark shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="index.html">👟 Break Shoes</a>
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="blogs.html">Blogs</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+        </ul>
+        <div class="d-flex gap-2">
+          <a class="btn btn-outline-light btn-sm" href="carrito.html">🛒 Cart <span class="badge bg-danger" id="cart-count">0</span></a>
+          <span id="usuario-navbar"></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+<div class="container py-5">
+  <a href="productos.html" class="btn btn-sm btn-secondary mb-4">← Volver a Productos</a>
+
+  <div class="row g-4">
+    <div class="col-md-6 d-flex flex-column gap-3" id="galeria-producto">
+      <!-- Galería de imágenes JS -->
+    </div>
+
+    <!-- Info -->
+    <div class="col-md-6">
+      <h1 id="nombre-producto" class="fw-bold"></h1>
+      <div class="mb-2"><span class="text-muted">ID <span id="id-producto"></span></span></div>
+      <p id="precio-producto" class="fs-3 fw-bold text-dark"></p>
+      <div class="mb-3" id="selector-tallas"></div>
+      <div class="mb-3">
+  <button class="btn btn-dark btn-lg w-100 fw-bold" onclick="agregarCarrito()">AGREGAR AL CARRO</button>
+      </div>
+      <div class="mb-3">
+        <span class="badge bg-success mb-2">Llega mañana RM</span>
+        <div class="text-danger fw-bold">¿Quieres que llegue en menos de 3 horas?</div>
+        <div>¡Elige Envío <span class="fw-bold">Ultrarrápido</span> y recibe tus productos en menos de <span class="fw-bold">3 horas</span>!</div>
+  <a href="#" class="btn btn-dark btn-sm mt-2">Conoce tu talla</a>
+        <a href="#" class="btn btn-link btn-sm">Tabla de tallas</a>
+      </div>
+      <div class="mb-3">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="envio" id="envioDomicilio" checked>
+          <label class="form-check-label" for="envioDomicilio">Envío a domicilio <span class="text-success">En stock</span></label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="envio" id="retiroTienda">
+          <label class="form-check-label" for="retiroTienda">Retiro en tienda <a href="#" class="text-primary">Ver tiendas</a></label>
+        </div>
+      </div>
+      <div class="mb-2">
+        <label for="cantidad" class="form-label">Cantidad</label>
+        <input type="number" id="cantidad" class="form-control w-25 d-inline-block" value="1" min="1">
+      </div>
+      <p id="descripcion-producto"></p>
+    </div>
+  </div>
+  </div>
+  <!-- FOOTER -->
+  <footer class="bg-primary text-white text-center py-4 mt-5 shadow-lg">
+    <div class="container">
+      <p class="mb-0">&copy; 2025 Break Shoes - Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+<!-- ===== SCRIPT DENTRO DEL HTML ===== -->
+<script>
+// Leer ID de la URL
+const params = new URLSearchParams(window.location.search);
+const id = parseInt(params.get("id"));
+
+// Base de datos simulada (coincide con productos.html)
+const productos = [
+  {
+    id: 1,
+    nombre: "Air Jordan 3 Retro Black Cat",
+    precio: 280000,
+    imagenes: [
+      "https://newcop.com/cdn/shop/files/01_ff7c9471-f6f5-470f-960b-08a527f6e8bf.png?height=600&v=1736528666"
+    ],
+    descripcion: "Las Air Jordan 3 Retro Black Cat destacan por su diseño completamente negro, combinando cuero premium y detalles en gamuza para un acabado elegante. Con el icónico estampado de elefante en el talón y la puntera, y amortiguación Air visible para máxima comodidad.",
+    id_producto: "AJ3BLACKCAT2025",
+    tallas: ["US 7 MEN", "US 8 MEN", "US 8.5 MEN", "US 9 MEN", "US 9.5 MEN", "US 10 MEN", "US 11 MEN"]
+  },
+  {
+    id: 2,
+    nombre: "Adidas Campus 00S",
+    precio: 94990,
+    imagenes: [
+      "https://newcop.com/cdn/shop/files/adidas-campus-00s-core-black-1_2000x_f891c99f-d7be-41e6-aa92-9000abde32d0.webp?v=1682784882"
+    ],
+    descripcion: "Las adidas Campus 00S reinventan la silueta clásica con materiales modernos y proporciones actualizadas. Su parte superior de cuero premium y forro interno de tela fleece suave ofrecen comodidad y estilo, mientras la mediasuela en blanco hueso conecta con el legado Campus.",
+    id_producto: "ADCAMPUS00S2025",
+    tallas: ["US 6 MEN", "US 7 MEN", "US 8 MEN", "US 8.5 MEN", "US 9 MEN", "US 10 MEN"]
+  }
+    ,
+    {
+      id: 3,
+      nombre: "Nike Air Max 97",
+      precio: 159990,
+      imagenes: [
+        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/6a3671b8-f115-44f6-9ab6-3798d55210eb/custom-nike-air-max-97-shoes-by-you.png",
+        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/1a9ea72e-a96b-4e39-b0a4-d77140afc1d7/custom-nike-air-max-97-shoes-by-you.png",
+        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/62444d0d-0bc2-4976-93a3-8b2911c70b49/custom-nike-air-max-97-shoes-by-you.png",
+        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/d70a8fd8-e796-4392-bb60-a1b706dd445e/custom-nike-air-max-97-shoes-by-you.png"
+      ],
+      descripcion: "Las Nike Air Max 97 destacan por su diseño ondulado y su icónica unidad Air de longitud completa. Perfectas para quienes buscan comodidad y estilo futurista en cada paso.",
+  descripcion: "El AM97 era el calzado que se transformaba de su época y es tu turno de hacer lo mismo. Personaliza cada parte del calzado desde los materiales de la parte superior hasta los colores de la entresuela y la unidad Nike Air, además de las agujetas antideslizantes para asegurar el ajuste. Después, decide si quieres la suela de un solo color, teñida o translúcida. Incluso hay una plantilla mejorada que tiene más amortiguación en la planta del pie. Por fin, un calzado tan polifacético como tú.",
+      id_producto: "NAM97WHITE2025",
+      tallas: ["US 7 MEN", "US 8 MEN", "US 8.5 MEN", "US 9 MEN", "US 9.5 MEN", "US 10 MEN", "US 11 MEN"]
+    }
+  ];
+
+const prod = productos.find(p => p.id === id);
+if (prod) {
+  // Galería de imágenes en cuadrícula estilo Nike
+  const galeria = document.getElementById("galeria-producto");
+  if (prod.imagenes.length > 1) {
+    galeria.innerHTML = `<div class='row row-cols-2 g-2'>` + prod.imagenes.map(img => `
+      <div class='col d-flex align-items-center justify-content-center' style='min-height:180px;'>
+        <img src='${img}' class='img-fluid rounded' style='max-height:160px; object-fit:contain;' alt='${prod.nombre}'>
+      </div>
+    `).join("") + `</div>`;
+  } else {
+    galeria.innerHTML = prod.imagenes.map(img => `<div class='d-flex align-items-center justify-content-center' style='min-height:340px;'><img src='${img}' class='img-fluid rounded mb-3' style='max-height:320px; object-fit:contain;' alt='${prod.nombre}'></div>`).join("");
+  }
+  // Nombre, ID, precio
+  document.getElementById("nombre-producto").textContent = prod.nombre;
+  document.getElementById("id-producto").textContent = prod.id_producto || prod.id;
+  document.getElementById("precio-producto").textContent = `$${prod.precio.toLocaleString()}`;
+  // Selector de tallas con selección
+  const tallas = prod.tallas || [];
+  let tallaSeleccionada = null;
+  const selectorTallas = document.getElementById("selector-tallas");
+  selectorTallas.innerHTML = tallas.map(t => `<button type="button" class="btn btn-outline-dark talla-btn">${t}</button>`).join(" ");
+  Array.from(selectorTallas.getElementsByClassName("talla-btn")).forEach(btn => {
+    btn.addEventListener("click", function() {
+      Array.from(selectorTallas.getElementsByClassName("talla-btn")).forEach(b => b.classList.remove("active", "btn-dark"));
+      btn.classList.add("active", "btn-dark");
+      tallaSeleccionada = btn.textContent;
+    });
+  });
+  // Descripción
+  document.getElementById("descripcion-producto").textContent = prod.descripcion;
+} else {
+  document.body.innerHTML = "<div class='container py-5'><h2>Producto no encontrado</h2><a href='productos.html' class='btn btn-secondary'>Volver</a></div>";
+}
+
+// Agregar al carrito desde detalle
+function agregarCarrito() {
+  if (!tallaSeleccionada) {
+    alert("Por favor selecciona una talla antes de agregar al carrito.");
+    return;
+  }
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+  const cantidad = parseInt(document.getElementById("cantidad").value) || 1;
+  const existente = carrito.find(p => p.id === prod.id && p.talla === tallaSeleccionada);
+  if (existente) {
+    existente.cantidad += cantidad;
+  } else {
+    // Usar la primera imagen para el carrito
+    carrito.push({
+      id: prod.id,
+      nombre: prod.nombre,
+      precio: prod.precio,
+      imagen: prod.imagenes[0],
+      cantidad: cantidad,
+      talla: tallaSeleccionada
+    });
+  }
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  alert(`Producto (${prod.nombre}, talla ${tallaSeleccionada}) agregado al carrito`);
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+function mostrarUsuarioNavbar() {
+  const usuarioDiv = document.getElementById("usuario-navbar");
+  let usuario = localStorage.getItem("usuarioLogueado");
+  if (usuario) {
+    usuario = JSON.parse(usuario);
+    usuarioDiv.innerHTML = `<span class='fw-bold text-white me-2'>👤 ${usuario.nombre}</span><button class='btn btn-danger btn-sm' onclick='cerrarSesion()'>Cerrar sesión</button>`;
+  } else {
+    usuarioDiv.innerHTML = `<a class='btn btn-light btn-sm fw-bold' href='login.html'>Iniciar sesión</a> <a class='btn btn-primary btn-sm' href='registro.html'>Registrar</a>`;
+  }
+}
+function cerrarSesion() {
+  localStorage.removeItem("usuarioLogueado");
+  mostrarUsuarioNavbar();
+  location.reload();
+}
+document.addEventListener("DOMContentLoaded", mostrarUsuarioNavbar);
+</script>
+</body>
+</html>

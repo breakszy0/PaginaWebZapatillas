@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Iniciar Sesión - Break Shoes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg bg-primary navbar-dark shadow-sm">
+    <div class="container-fluid">
+  <a class="navbar-brand fw-bold" href="index.html">👟 Break Shoes</a>
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="blogs.html">Blogs</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+        </ul>
+        <div class="d-flex gap-2">
+          <a class="btn btn-outline-light btn-sm" href="carrito.html">🛒 Cart <span class="badge bg-danger" id="cart-count">0</span></a>
+          <a class="btn btn-outline-primary btn-sm" href="login.html">Iniciar sesión</a>
+          <a class="btn btn-primary btn-sm" href="registro.html">Registrar</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-5">
+    <h2 class="text-center mb-4">Iniciar Sesión</h2>
+  <form id="formLogin" class="mx-auto needs-validation border rounded-4 shadow-lg p-4 bg-white" style="max-width: 400px;" novalidate>
+      <section>
+        <div class="mb-3">
+          <label for="correo" class="form-label">Correo</label>
+          <input type="email" id="correo" class="form-control" required>
+          <div class="invalid-feedback" id="correoError">El correo debe terminar en @duoc.cl, @profesor.duoc.cl o @gmail.com.</div>
+        </div>
+        <div class="mb-3">
+          <label for="clave" class="form-label">Contraseña</label>
+          <input type="password" id="clave" class="form-control" minlength="4" maxlength="10" required>
+          <div class="invalid-feedback" id="claveError">La contraseña debe tener entre 4 y 10 caracteres.</div>
+        </div>
+  <button type="submit" class="btn btn-primary w-100 rounded-pill btn-lg shadow-sm">Entrar</button>
+      </section>
+    </form>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-primary text-white text-center py-4 mt-5 shadow-lg">
+    <div class="container">
+  <p class="mb-0">&copy; 2025 Break Shoes - Todos los derechos reservados</p>
+    </div>
+  </footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Validaciones personalizadas para login
+document.addEventListener("DOMContentLoaded", function() {
+  const form = document.getElementById("formLogin");
+  form.addEventListener("submit", function(e) {
+    let valido = true;
+    const correo = document.getElementById("correo");
+    const clave = document.getElementById("clave");
+    // Correo
+    const dominios = ["@duoc.cl", "@profesor.duoc.cl", "@gmail.com"];
+    if (!dominios.some(d => correo.value.endsWith(d))) {
+      correo.classList.add("is-invalid");
+      valido = false;
+    } else {
+      correo.classList.remove("is-invalid");
+    }
+    // Clave
+    if (clave.value.length < 4 || clave.value.length > 10) {
+      clave.classList.add("is-invalid");
+      valido = false;
+    } else {
+      clave.classList.remove("is-invalid");
+    }
+    if (!valido) {
+      e.preventDefault();
+    } else {
+      alert("Inicio de sesión exitoso");
+      localStorage.setItem("usuarioLogueado", JSON.stringify(usuario));
+      form.reset();
+      setTimeout(function() {
+        window.location.href = "index.html";
+      }, 800);
+    }
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Contacto - Break Shoes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg bg-primary navbar-dark shadow-sm">
+    <div class="container-fluid">
+  <a class="navbar-brand fw-bold" href="index.html">👟 Break Shoes</a>
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="blogs.html">Blogs</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+        </ul>
+        <div class="d-flex gap-2">
+          <a class="btn btn-outline-light btn-sm" href="carrito.html">🛒 Cart <span class="badge bg-danger" id="cart-count">0</span></a>
+          <a class="btn btn-outline-primary btn-sm" href="login.html">Iniciar sesión</a>
+          <a class="btn btn-primary btn-sm" href="registro.html">Registrar</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-5">
+    <h2 class="text-center mb-4">Contacto</h2>
+  <form id="formContacto" class="mx-auto needs-validation border rounded-4 shadow-lg p-4 bg-white" style="max-width: 600px;" novalidate>
+      <section>
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input type="text" id="nombre" class="form-control" maxlength="100" required>
+          <div class="invalid-feedback" id="nombreError">Por favor ingresa tu nombre (máx. 100 caracteres).</div>
+        </div>
+        <div class="mb-3">
+          <label for="correo" class="form-label">Correo</label>
+          <input type="email" id="correo" class="form-control" required>
+          <div class="invalid-feedback" id="correoError">El correo debe terminar en @duoc.cl, @profesor.duoc.cl o @gmail.com.</div>
+        </div>
+        <div class="mb-3">
+          <label for="comentario" class="form-label">Comentario</label>
+          <textarea id="comentario" class="form-control" rows="4" maxlength="500" required></textarea>
+          <div class="invalid-feedback" id="comentarioError">Por favor ingresa tu comentario (máx. 500 caracteres).</div>
+        </div>
+  <button type="submit" class="btn btn-primary w-100 rounded-pill btn-lg shadow-sm">Enviar</button>
+      </section>
+    </form>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-primary text-white text-center py-4 mt-5 shadow-lg">
+    <div class="container">
+  <p class="mb-0">&copy; 2025 Break Shoes - Todos los derechos reservados</p>
+    </div>
+  </footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Validaciones personalizadas para contacto
+document.addEventListener("DOMContentLoaded", function() {
+  const form = document.getElementById("formContacto");
+  form.addEventListener("submit", function(e) {
+    let valido = true;
+    const nombre = document.getElementById("nombre");
+    const correo = document.getElementById("correo");
+    const comentario = document.getElementById("comentario");
+    // Nombre
+    if (nombre.value.trim() === "" || nombre.value.length > 100) {
+      nombre.classList.add("is-invalid");
+      valido = false;
+    } else {
+      nombre.classList.remove("is-invalid");
+    }
+    // Correo
+    const dominios = ["@duoc.cl", "@profesor.duoc.cl", "@gmail.com"];
+    if (!dominios.some(d => correo.value.endsWith(d))) {
+      correo.classList.add("is-invalid");
+      valido = false;
+    } else {
+      correo.classList.remove("is-invalid");
+    }
+    // Comentario
+    if (comentario.value.trim() === "" || comentario.value.length > 500) {
+      comentario.classList.add("is-invalid");
+      valido = false;
+    } else {
+      comentario.classList.remove("is-invalid");
+    }
+    if (!valido) {
+      e.preventDefault();
+    } else {
+      alert("¡Gracias por contactarnos! Tu mensaje fue enviado correctamente.");
+      form.reset();
+    }
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+/* ---------- ROOT ---------- */
+:root {
+  --color-principal: #ff416c;
+  --color-secundario: #ff4b2b;
+  --fondo-claro: #f8f9fa;
+  --texto-oscuro: #212529;
+  --sombra-suave: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------- GENERAL ---------- */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--fondo-claro);
+  color: var(--texto-oscuro);
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  background: linear-gradient(to right, var(--color-principal), var(--color-secundario));
+  color: white;
+  padding: 80px 20px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.hero p {
+  font-size: 1.2rem;
+}
+
+/* ---------- BOTONES PERSONALIZADOS ---------- */
+.boton-principal {
+  background-color: white;
+  color: var(--color-principal);
+  border: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.boton-principal:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--sombra-suave);
+}
+
+/* ---------- CARDS DE PRODUCTOS ---------- */
+.card-producto {
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: var(--sombra-suave);
+}
+
+.card-producto:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.card-producto img {
+  border-bottom: 3px solid var(--color-principal);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 220px;
+  min-height: 220px;
+  object-fit: contain;
+  width: auto;
+}
+
+/* ---------- BLOGS ---------- */
+.card-blog {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: var(--sombra-suave);
+  transition: transform 0.2s;
+}
+
+.card-blog:hover {
+  transform: translateY(-5px);
+}
+
+/* ---------- CARRITO ---------- */
+#tabla-carrito img {
+  border-radius: 8px;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  background-color: #111;
+  color: #fff;
+  padding: 30px 0;
+  text-align: center;
+}
+
+footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* ---------- FORMULARIOS ---------- */
+form .form-control:focus {
+  border-color: var(--color-principal);
+  box-shadow: 0 0 0 0.2rem rgba(255, 65, 108, 0.25);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 576px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .boton-principal {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+}
