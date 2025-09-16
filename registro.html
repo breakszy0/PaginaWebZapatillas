@@ -6,7 +6,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body>
+<body class="bg-white">
 
   <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg bg-primary navbar-dark shadow-sm">
@@ -23,46 +23,69 @@
           <li class="nav-item"><a class="nav-link" href="blogs.html">Blogs</a></li>
           <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
         </ul>
-        <div class="d-flex gap-2">
-          <a class="btn btn-outline-light btn-sm" href="carrito.html">🛒 Cart <span class="badge bg-danger" id="cart-count">0</span></a>
-          <span id="usuario-navbar"></span>
+  </div>
+  <main class="container py-5 min-vh-100 d-flex flex-column justify-content-center align-items-center">
+    <div class="row justify-content-center w-100">
+      <div class="col-md-7">
+        <div class="card shadow-lg rounded-4">
+          <div class="card-header text-center bg-light">
+            <h5 class="mb-0">Registro de usuario</h5>
+          </div>
+          <div class="card-body">
+            <form id="formRegistro">
+              <div class="mb-3">
+                <label for="nombre" class="form-label">NOMBRE COMPLETO</label>
+                <input type="text" class="form-control" id="nombre" required>
+              </div>
+              <div class="mb-3">
+                <label for="correo1" class="form-label">CORREO</label>
+                <input type="email" class="form-control" id="correo1" required>
+              </div>
+              <div class="mb-3">
+                <label for="correo2" class="form-label">CORREO</label>
+                <input type="email" class="form-control" id="correo2" required>
+              </div>
+              <div class="mb-3">
+                <label for="password1" class="form-label">CONTRASEÑA</label>
+                <input type="password" class="form-control" id="password1" required>
+              </div>
+              <div class="mb-3">
+                <label for="password2" class="form-label">CONFIRMAR CONTRASEÑA</label>
+                <input type="password" class="form-control" id="password2" required>
+              </div>
+              <div class="mb-3">
+                <label for="telefono" class="form-label">TELÉFONO (opcional)</label>
+                <input type="text" class="form-control" id="telefono">
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label for="region" class="form-label">Región</label>
+                  <select class="form-select" id="region" required>
+                    <option value="">- Seleccione la región -</option>
+                    <option value="Metropolitana">Región Metropolitana de Santiago</option>
+                    <option value="Araucania">Región de la Araucanía</option>
+                    <option value="Ñuble">Región de Ñuble</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="comuna" class="form-label">Comuna</label>
+                  <select class="form-select" id="comuna" required>
+                    <option value="">- Seleccione la comuna -</option>
+                    <option value="Linares">Linares</option>
+                    <option value="Longaví">Longaví</option>
+                    <option value="Concepción">Concepción</option>
+                  </select>
+                </div>
+              </div>
+              <div class="d-grid">
+                <button type="submit" class="btn btn-outline-dark">REGISTRAR</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </nav>
-
-  <div class="container py-5">
-    <h2 class="text-center mb-4">Registrar Usuario</h2>
-    <form id="formRegistro" class="mx-auto border rounded-4 shadow-lg p-4 bg-white" style="max-width: 600px;">
-      <div class="mb-3">
-      <label for="run" class="form-label">RUN (sin puntos ni guión)</label>
-      <input type="text" id="run" class="form-control" maxlength="10" required>
-      <div class="invalid-feedback" id="runError">RUN inválido. Debe tener entre 8 y 10 caracteres y terminar en número o K.</div>
-      </div>
-      <div class="mb-3">
-      <label for="nombre" class="form-label">Nombre</label>
-      <input type="text" id="nombre" class="form-control" maxlength="50" required>
-      <div class="invalid-feedback" id="nombreError">Por favor ingresa tu nombre (máx. 50 caracteres).</div>
-      </div>
-      <div class="mb-3">
-      <label for="apellidos" class="form-label">Apellidos</label>
-      <input type="text" id="apellidos" class="form-control" maxlength="100" required>
-      <div class="invalid-feedback" id="apellidosError">Por favor ingresa tus apellidos (máx. 100 caracteres).</div>
-      </div>
-      <div class="mb-3">
-      <label for="correo" class="form-label">Correo</label>
-      <input type="email" id="correo" class="form-control" required>
-      <div class="invalid-feedback" id="correoError">El correo debe terminar en @duoc.cl, @profesor.duoc.cl o @gmail.com.</div>
-      </div>
-      <div class="mb-3">
-      <label for="direccion" class="form-label">Dirección</label>
-      <input type="text" id="direccion" class="form-control" maxlength="300" required>
-      <div class="invalid-feedback" id="direccionError">Por favor ingresa tu dirección (máx. 300 caracteres).</div>
-      </div>
-      <button type="submit" class="btn btn-primary w-100 rounded-pill btn-lg shadow-sm">Registrar</button>
-    </form>
-  </div>
-    </main>
+  </main>
 
   <!-- FOOTER -->
   <footer class="bg-primary text-white text-center py-4 mt-5 shadow-lg">
@@ -80,7 +103,7 @@ function mostrarUsuarioNavbar() {
     usuario = JSON.parse(usuario);
     usuarioDiv.innerHTML = `<span class='fw-bold text-white me-2'>👤 ${usuario.nombre}</span><button class='btn btn-danger btn-sm' onclick='cerrarSesion()'>Cerrar sesión</button>`;
   } else {
-    usuarioDiv.innerHTML = `<a class='btn btn-light btn-sm fw-bold' href='login.html'>Iniciar sesión</a> <a class='btn btn-primary btn-sm' href='registro.html'>Registrar</a>`;
+  usuarioDiv.innerHTML = `<a class='btn btn-light btn-sm fw-bold' href='login.html'>Iniciar sesión</a> <a class='btn btn-outline-dark btn-sm fw-bold' href='registro.html'>REGISTRAR</a>`;
   }
 }
 function cerrarSesion() {
@@ -88,6 +111,7 @@ function cerrarSesion() {
   mostrarUsuarioNavbar();
   location.reload();
 }
+window.addEventListener("storage", mostrarUsuarioNavbar);
 document.addEventListener("DOMContentLoaded", mostrarUsuarioNavbar);
 </script>
 <script>

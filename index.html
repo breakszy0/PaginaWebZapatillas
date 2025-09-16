@@ -43,41 +43,8 @@
 
   <!-- PRODUCTOS DESTACADOS -->
   <section class="container my-5">
-    <h2 class="text-center mb-4 fw-bold">Productos Destacados</h2>
-    <div class="row g-4 justify-content-center" id="productos-destacados">
-        <!-- Zapatillas 3x3 -->
-        <div class="col-md-5 col-lg-4">
-          <div class="card h-100 text-center border-0 shadow-lg rounded-4">
-            <img src="https://newcop.com/cdn/shop/files/02_6a4d2409-10ee-4429-bcca-05096d88bae4.png?v=1736528665&width=533" class="card-img-top rounded-top-4" alt="retro 3 black cat">
-            <div class="card-body d-flex flex-column justify-content-center align-items-center" style="height: 180px;">
-              <h5 class="card-title mb-3 fw-bold">Air Jordan 3 Retro Black Cat</h5>
-              <button class="btn btn-primary btn-sm w-100 mb-2" onclick="agregarCarrito(1, 'Air Jordan 3 Retro Black Cat', 280000, 'https://newcop.com/cdn/shop/files/01_ff7c9471-f6f5-470f-960b-08a527f6e8bf.png?height=600&v=1736528666')">Agregar al carrito</button>
-              <a href="detalle-producto.html?id=1" class="btn btn-primary btn-lg rounded-pill px-4 shadow-sm">Ver detalles</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-5 col-lg-4">
-          <div class="card h-100 text-center border-0 shadow-lg rounded-4">
-            <img src="https://newcop.com/cdn/shop/files/adidas-campus-00s-core-black-1_2000x_f891c99f-d7be-41e6-aa92-9000abde32d0.webp?v=1682784882" class="card-img-top rounded-top-4" alt="Adidas Campus 00S">
-            <div class="card-body d-flex flex-column justify-content-center align-items-center" style="height: 180px;">
-              <h5 class="card-title mb-3 fw-bold">Adidas Campus 00S</h5>
-              <button class="btn btn-primary btn-sm w-100 mb-2" onclick="agregarCarrito(2, 'Adidas Campus 00S', 94990, 'https://newcop.com/cdn/shop/files/adidas-campus-00s-core-black-1_2000x_f891c99f-d7be-41e6-aa92-9000abde32d0.webp?v=1682784882')">Agregar al carrito</button>
-              <a href="detalle-producto.html?id=2" class="btn btn-primary btn-lg rounded-pill px-4 shadow-sm">Ver detalles</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-5 col-lg-4">
-          <div class="card h-100 text-center border-0 shadow-lg rounded-4">
-            <img src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/1a9ea72e-a96b-4e39-b0a4-d77140afc1d7/custom-nike-air-max-97-shoes-by-you.png" class="card-img-top rounded-top-4" alt="Nike Air Max 97">
-            <div class="card-body d-flex flex-column justify-content-center align-items-center" style="height: 180px;">
-              <h5 class="card-title mb-3 fw-bold">Nike Air Max 97</h5>
-              <button class="btn btn-primary btn-sm w-100 mb-2" onclick="agregarCarrito(3, 'Nike Air Max 97', 159990, 'https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/6a3671b8-f115-44f6-9ab6-3798d55210eb/custom-nike-air-max-97-shoes-by-you.png')">Agregar al carrito</button>
-              <a href="detalle-producto.html?id=3" class="btn btn-primary btn-lg rounded-pill px-4 shadow-sm">Ver detalles</a>
-            </div>
-          </div>
-        </div>
-
-    </div>
+  <h2 class="text-center mb-4 fw-bold">Productos Destacados</h2>
+  <div class="row g-4 justify-content-center" id="productos-destacados"></div>
   </section>
 
   <!-- FOOTER -->
@@ -107,7 +74,7 @@
         usuario = JSON.parse(usuario);
         usuarioDiv.innerHTML = `<span class='fw-bold text-white me-2'>👤 ${usuario.nombre}</span><button class='btn btn-danger btn-sm' onclick='cerrarSesion()'>Cerrar sesión</button>`;
       } else {
-        usuarioDiv.innerHTML = `<a class='btn btn-light btn-sm fw-bold' href='login.html'>Iniciar sesión</a> <a class='btn btn-primary btn-sm' href='registro.html'>Registrar</a>`;
+  usuarioDiv.innerHTML = `<a class='btn btn-light btn-sm fw-bold' href='login.html'>Iniciar sesión</a> <a class='btn btn-outline-dark btn-sm fw-bold' href='registro.html'>REGISTRAR</a>`;
       }
     }
     function cerrarSesion() {
@@ -119,5 +86,53 @@
     document.addEventListener("DOMContentLoaded", mostrarUsuarioNavbar);
   </script>
   <script src="js/productos.js"></script>
+<script>
+// Renderizar todos los productos en index
+function renderProductosDestacados() {
+  let productos = JSON.parse(localStorage.getItem("productos"));
+  if (!productos || !productos.length) {
+    productos = [
+      {
+        id: 1,
+        nombre: "Air Jordan 3 Retro Black Cat",
+        precio: 280000,
+        imagen: "https://newcop.com/cdn/shop/files/01_ff7c9471-f6f5-470f-960b-08a527f6e8bf.png?height=600&v=1736528666"
+      },
+      {
+        id: 2,
+        nombre: "Adidas Campus 00S",
+        precio: 94990,
+        imagen: "https://newcop.com/cdn/shop/files/adidas-campus-00s-core-black-1_2000x_f891c99f-d7be-41e6-aa92-9000abde32d0.webp?v=1682784882"
+      },
+      {
+        id: 3,
+        nombre: "Nike Air Max 97",
+        precio: 159990,
+        imagen: "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/6a3671b8-f115-44f6-9ab6-3798d55210eb/custom-nike-air-max-97-shoes-by-you.png"
+      }
+    ];
+  }
+  const contenedor = document.getElementById("productos-destacados");
+  contenedor.innerHTML = productos.map(producto => `
+    <div class="col-md-4 d-flex align-items-stretch">
+      <div class="card card-producto h-100 w-100 d-flex flex-column">
+        <div class="d-flex align-items-center justify-content-center" style="min-height:220px;">
+          <img src="${producto.imagen}" class="card-img-top" style="max-height:180px; object-fit:contain;" alt="${producto.nombre}">
+        </div>
+        <div class="card-body text-center d-flex flex-column justify-content-end flex-grow-1">
+          <h5 class="card-title">${producto.nombre}</h5>
+          <p class="card-text fw-bold">$${producto.precio.toLocaleString()}</p>
+          <button class="btn btn-primary btn-sm w-100 mb-2" onclick="agregarCarrito(${producto.id}, '${producto.nombre}', ${producto.precio}, '${producto.imagen}')">Agregar al carrito</button>
+          <a href="detalle-producto.html?id=${producto.id}" class="btn btn-outline-secondary btn-sm w-100 mb-2">Ver detalle</a>
+        </div>
+      </div>
+    </div>
+  `).join("");
+}
+renderProductosDestacados();
+window.addEventListener("storage", function(e) {
+  if (e.key === "productos") renderProductosDestacados();
+});
+</script>
 </body>
 </html>

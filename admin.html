@@ -1,0 +1,206 @@
+<script>
+// Formulario para agregar zapatilla
+function renderFormAgregarZapatilla() {
+  const formHtml = `
+    <form id='formAgregarZapatilla' class='card p-4 mb-4' style='max-width:500px;'>
+      <h5 class='mb-3 fw-bold'>Agregar nueva zapatilla</h5>
+      <div class='mb-2'><label>Nombre</label><input type='text' class='form-control' id='nombreZapatilla' required></div>
+      <div class='mb-2'><label>Precio</label><input type='number' class='form-control' id='precioZapatilla' required></div>
+      <div class='mb-2'><label>Imagen (URL)</label><input type='text' class='form-control' id='imagenZapatilla' required></div>
+      <button type='submit' class='btn btn-success mt-2'>Agregar</button>
+    </form>
+  `;
+  document.getElementById('panel-agregar-zapatilla').innerHTML = formHtml;
+  document.getElementById('formAgregarZapatilla').onsubmit = function(e) {
+    e.preventDefault();
+    const nombre = document.getElementById('nombreZapatilla').value.trim();
+    const precio = parseInt(document.getElementById('precioZapatilla').value);
+    const imagen = document.getElementById('imagenZapatilla').value.trim();
+  if (!nombre || !precio || !imagen) return alert('Completa todos los campos');
+  let productos = JSON.parse(localStorage.getItem('productos')) || [];
+  // Asignar id único
+  let maxId = productos.length ? Math.max(...productos.map(p => p.id || 0)) : 0;
+  let nuevoProducto = { id: maxId + 1, nombre, precio, imagen };
+  productos.push(nuevoProducto);
+  localStorage.setItem('productos', JSON.stringify(productos));
+  // Disparar evento storage para actualizar tienda
+  window.dispatchEvent(new Event('storage'));
+  alert('Zapatilla agregada correctamente');
+  renderFormAgregarZapatilla();
+  };
+}
+document.addEventListener('DOMContentLoaded', function() {
+  if (document.getElementById('panel-agregar-zapatilla')) renderFormAgregarZapatilla();
+});
+</script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Zona Administrador - Break Shoes</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="index.html">👟 Break Shoes Admin</a>
+      <a class="btn btn-light btn-sm ms-auto" href="index.html">Volver a tienda</a>
+    </div>
+  </nav>
+  <div class="d-flex" style="min-height: 80vh;">
+    <!-- Sidebar -->
+    <aside class="bg-light border-end" style="width:220px;min-height:100%;">
+      <div class="p-3">
+        <h5 class="fw-bold mb-4"><img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" width="24" class="me-2">Company</h5>
+        <ul class="nav flex-column mb-4">
+          <li class="nav-item mb-2"><a class="nav-link text-dark" href="#"><i class="bi bi-grid"></i> Dashboard</a></li>
+          <li class="nav-item mb-2"><a class="nav-link text-dark" href="#"><i class="bi bi-list"></i> Orders</a></li>
+          <li class="nav-item mb-2"><a class="nav-link text-dark" href="#"><i class="bi bi-box"></i> Inventory</a></li>
+          <li class="nav-item mb-2"><a class="nav-link text-dark" href="#"><i class="bi bi-bar-chart"></i> Reports</a></li>
+          <li class="nav-item mb-2"><a class="nav-link text-dark" href="#"><i class="bi bi-people"></i> Employees</a></li>
+        </ul>
+      </div>
+    </aside>
+    <!-- Main Panel -->
+    <main class="flex-grow-1 bg-white d-flex flex-column">
+      <div class="border-bottom p-4">
+        <h3 class="fw-bold">¡HOLA Administrador!</h3>
+        <span class="float-end"><i class="bi bi-suit-spade-fill"></i></span>
+      </div>
+      <div class="flex-grow-1 d-flex flex-column">
+        <div class="row g-0 flex-grow-1">
+          <div class="col-12 col-lg-6 border-end p-4">
+            <!-- Panel superior izquierdo -->
+            <div class="mb-4">
+              <h5 class="fw-bold">Órdenes</h5>
+              <div class="card p-3 mb-2">
+                <span class="fs-2 fw-bold text-primary">12</span>
+                <div class="text-muted">Órdenes registradas</div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <h5 class="fw-bold">Inventario</h5>
+              <div class="card p-3 mb-2">
+                <span class="fs-2 fw-bold text-success" id="total-inventario"></span>
+                <div class="text-muted">Total unidades (editable)</div>
+                <form id="formInventario" class="mt-2 mb-0 ps-3">
+                  <div id="inventario-lista"></div>
+                  <button type="submit" class="btn btn-primary btn-sm mt-3">Guardar inventario</button>
+                </form>
+<script>
+function renderInventarioAdmin() {
+  const productos = JSON.parse(localStorage.getItem('productos')) || [
+    {nombre:'Air Jordan 3 Retro Black Cat'},
+    {nombre:'Adidas Campus 00S'},
+    {nombre:'Nike Air Max 97'}
+  ];
+  let inventario = JSON.parse(localStorage.getItem('inventario')) || {};
+  let total = 0;
+  let html = productos.map((p, i) => {
+    const cantidad = inventario[p.nombre] || 10;
+    total += cantidad;
+    return `<div class='mb-2 d-flex align-items-center'><label>${p.nombre}:</label> <input type='number' min='0' class='form-control d-inline-block w-auto ms-2' name='${p.nombre}' value='${cantidad}' style='max-width:80px;'>
+      <button type='button' class='btn btn-warning btn-sm ms-2' onclick='editarProductoAdmin(${i})'>Editar</button>
+      <button type='button' class='btn btn-danger btn-sm ms-2' onclick='eliminarProductoAdmin(${i})'>Eliminar</button>
+    </div>`;
+  }).join('');
+  document.getElementById('inventario-lista').innerHTML = html;
+  document.getElementById('total-inventario').textContent = total;
+
+  // Guardar productos en variable global para edición/eliminación
+  window._productosAdmin = productos;
+}
+
+function editarProductoAdmin(idx) {
+  const producto = window._productosAdmin[idx];
+  const nombre = prompt('Editar nombre:', producto.nombre);
+  if (!nombre) return;
+  const precio = parseInt(prompt('Editar precio:', producto.precio));
+  if (!precio) return;
+  const imagen = prompt('Editar imagen (URL):', producto.imagen || '');
+  if (!imagen) return;
+  let productos = JSON.parse(localStorage.getItem('productos')) || [];
+  productos[idx] = { ...producto, nombre, precio, imagen };
+  localStorage.setItem('productos', JSON.stringify(productos));
+  alert('Producto editado correctamente');
+  renderInventarioAdmin();
+}
+
+function eliminarProductoAdmin(idx) {
+  if (!confirm('¿Seguro que quieres eliminar este producto?')) return;
+  let productos = JSON.parse(localStorage.getItem('productos')) || [];
+  productos.splice(idx, 1);
+  localStorage.setItem('productos', JSON.stringify(productos));
+  alert('Producto eliminado correctamente');
+  renderInventarioAdmin();
+}
+document.getElementById('formInventario').onsubmit = function(e) {
+  e.preventDefault();
+  const form = e.target;
+  let inventario = {};
+  Array.from(form.elements).forEach(el => {
+    if (el.type === 'number') inventario[el.name] = parseInt(el.value) || 0;
+  });
+  localStorage.setItem('inventario', JSON.stringify(inventario));
+  renderInventarioAdmin();
+  alert('Inventario actualizado');
+};
+renderInventarioAdmin();
+</script>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-6 p-4">
+            <!-- Panel superior derecho -->
+            <div class="mb-4">
+              <h5 class="fw-bold">Trabajadores</h5>
+              <div class="card p-3 mb-2">
+                <span class="fs-2 fw-bold text-warning">1</span>
+                <div class="text-muted">breaksz (Administrador)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row g-0 border-top" style="min-height:150px;">
+          <div class="col-12 p-4">
+            <div class="d-flex flex-wrap gap-3 align-items-center mb-4">
+              <a href="admin-nuevo-producto.html" class="btn btn-success">Nuevo Producto</a>
+              <a href="admin-nuevo-usuario.html" class="btn btn-success">Nuevo Usuario</a>
+              <a href="admin-editar-producto.html" class="btn btn-warning">Editar Producto</a>
+              <a href="admin-editar-usuario.html" class="btn btn-warning">Editar Usuario</a>
+              <a href="admin-mostrar-producto.html" class="btn btn-info">Mostrar Producto</a>
+              <a href="admin-usuarios.html" class="btn btn-info">Mostrar Usuario</a>
+            </div>
+            <div id="panel-agregar-zapatilla"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script>
+    // Login admin
+    document.getElementById('formAdminLogin').onsubmit = function(e) {
+      e.preventDefault();
+      const user = document.getElementById('adminUser').value.trim();
+      const clave = document.getElementById('adminClave').value;
+      if (user === 'breaksz' && clave === 'Break6666??') {
+        localStorage.setItem('adminLogueado', 'true');
+        document.getElementById('admin-login').style.display = 'none';
+        document.getElementById('admin-menu').style.display = 'block';
+      } else {
+        alert('Usuario o clave incorrectos');
+      }
+    };
+    // Mantener sesión admin
+    if (localStorage.getItem('adminLogueado') === 'true') {
+      document.getElementById('admin-login').style.display = 'none';
+      document.getElementById('admin-menu').style.display = 'block';
+    }
+    function cerrarAdmin() {
+      localStorage.removeItem('adminLogueado');
+      document.getElementById('admin-menu').style.display = 'none';
+      document.getElementById('admin-login').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

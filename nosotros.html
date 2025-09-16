@@ -24,16 +24,114 @@
           <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
         </ul>
         <div class="d-flex gap-2">
-          <a class="btn btn-outline-light btn-sm" href="carrito.html">🛒 Cart <span class="badge bg-danger" id="cart-count">0</span></a>
+            <a class="btn btn-outline-light btn-sm" href="carrito.html">🛒 Cart <span class="badge bg-danger" id="cart-count">0</span></a>
           <span id="usuario-navbar"></span>
         </div>
       </div>
     </div>
   </nav>
 
+    <div class="d-flex justify-content-center mb-4">
+      <button class="btn btn-outline-dark btn-sm fw-bold" data-bs-toggle="modal" data-bs-target="#modalRegistro">REGISTRAR</button>
+    </div>
   <div class="container py-5">
     <h2 class="text-center mb-5">¿Quiénes somos?</h2>
     <div class="row g-4 align-items-center mb-5">
+<!-- Modal Registro Usuario -->
+<div class="modal fade" id="modalRegistro" tabindex="-1" aria-labelledby="modalRegistroLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalRegistroLabel">Registro de usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formRegistroModal">
+          <div class="mb-3">
+            <label for="nombreModal" class="form-label">NOMBRE COMPLETO</label>
+            <input type="text" class="form-control" id="nombreModal" required>
+          </div>
+          <div class="mb-3">
+            <label for="correo1Modal" class="form-label">CORREO</label>
+            <input type="email" class="form-control" id="correo1Modal" required>
+          </div>
+          <div class="mb-3">
+            <label for="correo2Modal" class="form-label">CORREO</label>
+            <input type="email" class="form-control" id="correo2Modal" required>
+          </div>
+          <div class="mb-3">
+            <label for="password1Modal" class="form-label">CONTRASEÑA</label>
+            <input type="password" class="form-control" id="password1Modal" required>
+          </div>
+          <div class="mb-3">
+            <label for="password2Modal" class="form-label">CONFIRMAR CONTRASEÑA</label>
+            <input type="password" class="form-control" id="password2Modal" required>
+          </div>
+          <div class="mb-3">
+            <label for="telefonoModal" class="form-label">TELÉFONO (opcional)</label>
+            <input type="text" class="form-control" id="telefonoModal">
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="regionModal" class="form-label">Región</label>
+              <select class="form-select" id="regionModal" required>
+                <option value="">- Seleccione la región -</option>
+                <option value="Metropolitana">Región Metropolitana de Santiago</option>
+                <option value="Araucania">Región de la Araucanía</option>
+                <option value="Ñuble">Región de Ñuble</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="comunaModal" class="form-label">Comuna</label>
+              <select class="form-select" id="comunaModal" required>
+                <option value="">- Seleccione la comuna -</option>
+                <option value="Linares">Linares</option>
+                <option value="Longaví">Longaví</option>
+                <option value="Concepción">Concepción</option>
+              </select>
+            </div>
+          </div>
+          <div class="d-grid">
+            <button type="submit" class="btn btn-outline-dark">REGISTRAR</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+// Registro desde modal
+document.getElementById("formRegistroModal").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const nombre = document.getElementById("nombreModal").value;
+  const correo1 = document.getElementById("correo1Modal").value;
+  const correo2 = document.getElementById("correo2Modal").value;
+  const password1 = document.getElementById("password1Modal").value;
+  const password2 = document.getElementById("password2Modal").value;
+  const telefono = document.getElementById("telefonoModal").value;
+  const region = document.getElementById("regionModal").value;
+  const comuna = document.getElementById("comunaModal").value;
+  if (correo1 !== correo2) {
+    alert("Los correos no coinciden.");
+    return;
+  }
+  if (password1 !== password2) {
+    alert("Las contraseñas no coinciden.");
+    return;
+  }
+  let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+  if (usuarios.some(u => u.correo === correo1)) {
+    alert("Ya existe un usuario registrado con ese correo.");
+    return;
+  }
+  usuarios.push({ nombre, correo: correo1, clave: password1, telefono, region, comuna });
+  localStorage.setItem("usuarios", JSON.stringify(usuarios));
+  alert("Usuario registrado con éxito.");
+  document.getElementById("formRegistroModal").reset();
+  var modal = bootstrap.Modal.getInstance(document.getElementById('modalRegistro'));
+  modal.hide();
+});
+</script>
       <div class="col-md-6">
         <img src="https://via.placeholder.com/600x400?text=Tienda+Zapatillas" class="img-fluid rounded shadow" alt="Nosotros">
       </div>
@@ -52,22 +150,13 @@
       </div>
     </div>
     <!-- Equipo -->
-    <h4 class="text-center mb-4">Equipo detrás de ZapatillasWeb</h4>
+    <h4 class="text-center mb-4">Equipo detrás de Break Shoes</h4>
     <div class="row g-4 text-center">
       <div class="col-md-4">
         <img src="https://via.placeholder.com/150x150?text=Juan+Pérez" class="rounded-circle mb-3" alt="Juan">
-        <h5>Juan Pérez</h5>
+        <h5>Alfredo Ibaceta</h5>
         <p class="text-muted">CEO & Fundador</p>
       </div>
-      <div class="col-md-4">
-        <img src="https://via.placeholder.com/150x150?text=María+López" class="rounded-circle mb-3" alt="María">
-        <h5>María López</h5>
-        <p class="text-muted">Head of Marketing</p>
-      </div>
-      <div class="col-md-4">
-        <img src="https://via.placeholder.com/150x150?text=Carlos+Ríos" class="rounded-circle mb-3" alt="Carlos">
-        <h5>Carlos Ríos</h5>
-        <p class="text-muted">Lead Developer</p>
       </div>
     </div>
   </div>
@@ -87,7 +176,7 @@ function mostrarUsuarioNavbar() {
     usuario = JSON.parse(usuario);
     usuarioDiv.innerHTML = `<span class='fw-bold text-white me-2'>👤 ${usuario.nombre}</span><button class='btn btn-danger btn-sm' onclick='cerrarSesion()'>Cerrar sesión</button>`;
   } else {
-    usuarioDiv.innerHTML = `<a class='btn btn-light btn-sm fw-bold' href='login.html'>Iniciar sesión</a> <a class='btn btn-primary btn-sm' href='registro.html'>Registrar</a>`;
+  usuarioDiv.innerHTML = `<a class='btn btn-light btn-sm fw-bold' href='login.html'>Iniciar sesión</a> <a class='btn btn-outline-dark btn-sm fw-bold' href='registro.html'>REGISTRAR</a>`;
   }
 }
 function cerrarSesion() {
@@ -95,6 +184,7 @@ function cerrarSesion() {
   mostrarUsuarioNavbar();
   location.reload();
 }
+window.addEventListener("storage", mostrarUsuarioNavbar);
 document.addEventListener("DOMContentLoaded", mostrarUsuarioNavbar);
 </script>
 </body>

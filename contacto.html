@@ -102,6 +102,23 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 });
+function mostrarUsuarioNavbar() {
+  const usuarioDiv = document.getElementById("usuario-navbar");
+  let usuario = localStorage.getItem("usuarioLogueado");
+  if (usuario) {
+    usuario = JSON.parse(usuario);
+    usuarioDiv.innerHTML = `<span class='fw-bold text-white me-2'>👤 ${usuario.nombre}</span><button class='btn btn-danger btn-sm' onclick='cerrarSesion()'>Cerrar sesión</button>`;
+  } else {
+  usuarioDiv.innerHTML = `<a class='btn btn-light btn-sm fw-bold' href='login.html'>Iniciar sesión</a> <a class='btn btn-outline-dark btn-sm fw-bold' href='registro.html'>REGISTRAR</a>`;
+  }
+}
+function cerrarSesion() {
+  localStorage.removeItem("usuarioLogueado");
+  mostrarUsuarioNavbar();
+  location.reload();
+}
+window.addEventListener("storage", mostrarUsuarioNavbar);
+document.addEventListener("DOMContentLoaded", mostrarUsuarioNavbar);
 </script>
 </body>
 </html>

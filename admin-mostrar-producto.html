@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mostrar Productos - Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="admin.html">👟 Admin Panel</a>
+      <a class="btn btn-light btn-sm ms-auto" href="admin.html">Volver</a>
+    </div>
+  </nav>
+  <div class="container py-4">
+    <h2 class="mb-4">Productos Registrados</h2>
+    <div id="productos-lista"></div>
+  </div>
+  <script>
+    function mostrarProductos() {
+      const productos = JSON.parse(localStorage.getItem('productosAdmin')) || [];
+      const lista = document.getElementById('productos-lista');
+      if (!productos.length) {
+        lista.innerHTML = '<div class="alert alert-info">No hay productos registrados.</div>';
+        return;
+      }
+      lista.innerHTML = productos.map(p => `
+        <div class='card mb-2 p-2 d-flex flex-row align-items-center'>
+          <img src='${p.imagen}' alt='${p.nombre}' style='width:60px;height:60px;object-fit:contain;margin-right:15px;'>
+          <div>
+            <b>${p.nombre}</b><br>
+            $${p.precio}
+          </div>
+        </div>
+      `).join('');
+    }
+    document.addEventListener('DOMContentLoaded', mostrarProductos);
+  </script>
+</body>
+</html>

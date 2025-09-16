@@ -26,7 +26,7 @@
         <div class="d-flex gap-2">
           <a class="btn btn-outline-light btn-sm" href="carrito.html">🛒 Cart <span class="badge bg-danger" id="cart-count">0</span></a>
           <a class="btn btn-outline-primary btn-sm" href="login.html">Iniciar sesión</a>
-          <a class="btn btn-primary btn-sm" href="registro.html">Registrar</a>
+          <a class="btn btn-outline-dark btn-sm fw-bold" href="registro.html">REGISTRAR</a>
         </div>
       </div>
     </div>
@@ -83,14 +83,22 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     if (!valido) {
       e.preventDefault();
-    } else {
-      alert("Inicio de sesión exitoso");
-      localStorage.setItem("usuarioLogueado", JSON.stringify(usuario));
-      form.reset();
-      setTimeout(function() {
-        window.location.href = "index.html";
-      }, 800);
+      return;
     }
+    // Validar usuario en localStorage
+    let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+    const usuario = usuarios.find(u => u.correo === correo.value && u.clave === clave.value);
+    if (!usuario) {
+      alert("Correo o clave incorrectos.");
+      e.preventDefault();
+      return;
+    }
+    alert("Inicio de sesión exitoso. ¡Bienvenido, " + usuario.nombre + "!");
+    localStorage.setItem("usuarioLogueado", JSON.stringify(usuario));
+    form.reset();
+    setTimeout(function() {
+      window.location.href = "index.html";
+    }, 800);
   });
 });
 </script>

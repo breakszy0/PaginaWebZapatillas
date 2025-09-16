@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Nuevo Producto - Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="admin.html">👟 Admin Panel</a>
+      <a class="btn btn-light btn-sm ms-auto" href="admin.html">Volver</a>
+    </div>
+  </nav>
+  <div class="container py-4">
+    <h2 class="mb-4">Agregar Nuevo Producto</h2>
+    <form id="formNuevoProducto" class="border rounded-4 shadow-lg p-4 bg-white mx-auto" style="max-width: 500px;">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" id="nombre" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="precio" class="form-label">Precio</label>
+        <input type="number" id="precio" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label for="imagen" class="form-label">URL Imagen</label>
+        <input type="text" id="imagen" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-success w-100">Agregar</button>
+    </form>
+    <div id="msgProducto" class="mt-3"></div>
+  </div>
+  <script>
+    document.getElementById('formNuevoProducto').onsubmit = function(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('nombre').value.trim();
+      const precio = parseInt(document.getElementById('precio').value);
+      const imagen = document.getElementById('imagen').value.trim();
+      let productos = JSON.parse(localStorage.getItem('productosAdmin')) || [];
+      productos.push({ id: Date.now(), nombre, precio, imagen });
+      localStorage.setItem('productosAdmin', JSON.stringify(productos));
+      document.getElementById('msgProducto').innerHTML = '<div class="alert alert-success">Producto agregado correctamente.</div>';
+      document.getElementById('formNuevoProducto').reset();
+    };
+  </script>
+</body>
+</html>

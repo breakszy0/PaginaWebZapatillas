@@ -85,8 +85,8 @@
 const params = new URLSearchParams(window.location.search);
 const id = parseInt(params.get("id"));
 
-// Base de datos simulada (coincide con productos.html)
-const productos = [
+// Leer productos desde localStorage y fusionar con catálogo base
+const productosBase = [
   {
     id: 1,
     nombre: "Air Jordan 3 Retro Black Cat",
@@ -108,24 +108,36 @@ const productos = [
     descripcion: "Las adidas Campus 00S reinventan la silueta clásica con materiales modernos y proporciones actualizadas. Su parte superior de cuero premium y forro interno de tela fleece suave ofrecen comodidad y estilo, mientras la mediasuela en blanco hueso conecta con el legado Campus.",
     id_producto: "ADCAMPUS00S2025",
     tallas: ["US 6 MEN", "US 7 MEN", "US 8 MEN", "US 8.5 MEN", "US 9 MEN", "US 10 MEN"]
+  },
+  {
+    id: 3,
+    nombre: "Nike Air Max 97",
+    precio: 159990,
+    imagenes: [
+      "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/6a3671b8-f115-44f6-9ab6-3798d55210eb/custom-nike-air-max-97-shoes-by-you.png",
+      "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/1a9ea72e-a96b-4e39-b0a4-d77140afc1d7/custom-nike-air-max-97-shoes-by-you.png",
+      "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/62444d0d-0bc2-4976-93a3-8b2911c70b49/custom-nike-air-max-97-shoes-by-you.png",
+      "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/d70a8fd8-e796-4392-bb60-a1b706dd445e/custom-nike-air-max-97-shoes-by-you.png"
+    ],
+    descripcion: "Las Nike Air Max 97 destacan por su diseño ondulado y su icónica unidad Air de longitud completa. Perfectas para quienes buscan comodidad y estilo futurista en cada paso.",
+    id_producto: "NAM97WHITE2025",
+    tallas: ["US 7 MEN", "US 8 MEN", "US 8.5 MEN", "US 9 MEN", "US 9.5 MEN", "US 10 MEN", "US 11 MEN"]
   }
-    ,
-    {
-      id: 3,
-      nombre: "Nike Air Max 97",
-      precio: 159990,
-      imagenes: [
-        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/6a3671b8-f115-44f6-9ab6-3798d55210eb/custom-nike-air-max-97-shoes-by-you.png",
-        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/1a9ea72e-a96b-4e39-b0a4-d77140afc1d7/custom-nike-air-max-97-shoes-by-you.png",
-        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/62444d0d-0bc2-4976-93a3-8b2911c70b49/custom-nike-air-max-97-shoes-by-you.png",
-        "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/d70a8fd8-e796-4392-bb60-a1b706dd445e/custom-nike-air-max-97-shoes-by-you.png"
-      ],
-      descripcion: "Las Nike Air Max 97 destacan por su diseño ondulado y su icónica unidad Air de longitud completa. Perfectas para quienes buscan comodidad y estilo futurista en cada paso.",
-  descripcion: "El AM97 era el calzado que se transformaba de su época y es tu turno de hacer lo mismo. Personaliza cada parte del calzado desde los materiales de la parte superior hasta los colores de la entresuela y la unidad Nike Air, además de las agujetas antideslizantes para asegurar el ajuste. Después, decide si quieres la suela de un solo color, teñida o translúcida. Incluso hay una plantilla mejorada que tiene más amortiguación en la planta del pie. Por fin, un calzado tan polifacético como tú.",
-      id_producto: "NAM97WHITE2025",
-      tallas: ["US 7 MEN", "US 8 MEN", "US 8.5 MEN", "US 9 MEN", "US 9.5 MEN", "US 10 MEN", "US 11 MEN"]
-    }
-  ];
+];
+
+let productosLS = JSON.parse(localStorage.getItem("productos")) || [];
+// Convertir productosLS a formato compatible si no tiene imagenes ni tallas
+productosLS = productosLS.map(p => {
+  return {
+    ...p,
+    imagenes: p.imagenes || [p.imagen],
+    descripcion: p.descripcion || "Sin descripción disponible.",
+    tallas: p.tallas || ["US 7 MEN", "US 8 MEN", "US 9 MEN", "US 10 MEN"]
+  };
+});
+// Fusionar productos base y LS sin duplicados por id
+const idsExistentes = new Set(productosLS.map(p => p.id));
+const productos = [...productosBase.filter(p => !idsExistentes.has(p.id)), ...productosLS];
 
 const prod = productos.find(p => p.id === id);
 if (prod) {
@@ -205,6 +217,7 @@ function cerrarSesion() {
   mostrarUsuarioNavbar();
   location.reload();
 }
+window.addEventListener("storage", mostrarUsuarioNavbar);
 document.addEventListener("DOMContentLoaded", mostrarUsuarioNavbar);
 </script>
 </body>
