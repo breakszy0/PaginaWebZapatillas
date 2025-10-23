@@ -32,7 +32,7 @@
   </nav>
 
   <div class="container py-5">
-    <h2 class="text-center mb-5">Todos los Productos</h2>
+    <h2 class="text-center mb-5">Descubre todas nuestras zapatillas</h2>
     <div class="row g-4" id="lista-productos">
       <!-- JS cargará productos aquí -->
     </div>
@@ -41,7 +41,7 @@
   <!-- FOOTER -->
   <footer class="bg-dark text-white text-center py-4">
     <div class="container">
-  <p class="mb-0">&copy; 2025 Break Shoes - Todos los derechos reservados</p>
+  <p class="mb-0">&copy; 2025 Break Shoes - Gracias por preferirnos. ¡Vuelve pronto!</p>
     </div>
   </footer>
 
@@ -103,8 +103,8 @@ function renderListaProductos() {
           <div class="card-body text-center d-flex flex-column justify-content-end flex-grow-1">
             <h5 class="card-title">${producto.nombre}</h5>
             <p class="card-text fw-bold">$${producto.precio.toLocaleString()}</p>
-            <button class="btn btn-primary btn-sm w-100 mb-2" onclick="agregarCarrito(${producto.id}, '${producto.nombre}', ${producto.precio}, '${producto.imagen}')">Agregar al carrito</button>
-            <a href="detalle-producto.html?id=${producto.id}" class="btn btn-outline-secondary btn-sm w-100 mb-2">Ver detalle</a>
+            <button class="btn btn-primary btn-sm w-100 mb-2" onclick="agregarCarrito(${producto.id}, '${producto.nombre}', ${producto.precio}, '${producto.imagen}')">¡Lo quiero en mi carrito!</button>
+            <a href="detalle-producto.html?id=${producto.id}" class="btn btn-outline-secondary btn-sm w-100 mb-2">Ver más detalles</a>
           </div>
         </div>
       </div>
@@ -128,20 +128,7 @@ function agregarCarrito(id, nombre, precio, imagen) {
     carrito.push({ id, nombre, precio, imagen, cantidad: 1 });
   }
   localStorage.setItem("carrito", JSON.stringify(carrito));
-  alert(`Producto (${nombre}) agregado al carrito`);
-}
-
-// Agregar producto al carrito (localStorage)
-function agregarCarrito(id, nombre, precio, imagen) {
-  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  const existente = carrito.find(p => p.id === id);
-  if (existente) {
-    existente.cantidad += 1;
-  } else {
-    carrito.push({ id, nombre, precio, imagen, cantidad: 1 });
-  }
-  localStorage.setItem("carrito", JSON.stringify(carrito));
-  alert("Producto agregado al carrito");
+  alert(`¡Listo! Agregaste "${nombre}" a tu carrito. Puedes seguir comprando o ir al carrito cuando quieras.`);
 }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -5,18 +5,16 @@ function renderCarrito() {
   const tabla = document.getElementById("tabla-carrito");
   const vacio = document.getElementById("carrito-vacio");
   const tbody = document.getElementById("carrito-body");
-
   if (!carrito.length) {
     tabla.classList.add("d-none");
+    vacio.textContent = "¡Tu carrito está vacío! Agrega tus zapatillas favoritas y vuelve aquí para verlas.";
     vacio.classList.remove("d-none");
     return;
   }
-
   vacio.classList.add("d-none");
   tabla.classList.remove("d-none");
   tbody.innerHTML = "";
   let total = 0;
-
   carrito.forEach((p, idx) => {
     const sub = p.precio * p.cantidad;
     total += sub;
@@ -26,11 +24,10 @@ function renderCarrito() {
         <td>$${p.precio.toLocaleString()}</td>
         <td>${p.cantidad}</td>
         <td>$${sub.toLocaleString()}</td>
-        <td><button class="btn btn-sm btn-danger" onclick="eliminarProducto(${idx})">🗑️</button></td>
+        <td><button class="btn btn-sm btn-danger" onclick="eliminarProducto(${idx})">Quitar</button></td>
       </tr>
     `;
   });
-
   tbody.innerHTML += `
     <tr class="table-dark">
       <th colspan="3">TOTAL</th>
@@ -47,7 +44,7 @@ function eliminarProducto(idx) {
 }
 
 function vaciarCarrito() {
-  if (confirm("¿Vaciar carrito?")) {
+  if (confirm("¿Seguro que quieres vaciar tu carrito? ¡Perderás todos los productos agregados!")) {
     carrito = [];
     localStorage.setItem("carrito", JSON.stringify(carrito));
     renderCarrito();

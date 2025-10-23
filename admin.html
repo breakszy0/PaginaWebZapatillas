@@ -3,7 +3,7 @@
 function renderFormAgregarZapatilla() {
   const formHtml = `
     <form id='formAgregarZapatilla' class='card p-4 mb-4' style='max-width:500px;'>
-      <h5 class='mb-3 fw-bold'>Agregar nueva zapatilla</h5>
+  <h5 class='mb-3 fw-bold'>Agregar una nueva zapatilla a la tienda</h5>
       <div class='mb-2'><label>Nombre</label><input type='text' class='form-control' id='nombreZapatilla' required></div>
       <div class='mb-2'><label>Precio</label><input type='number' class='form-control' id='precioZapatilla' required></div>
       <div class='mb-2'><label>Imagen (URL)</label><input type='text' class='form-control' id='imagenZapatilla' required></div>
@@ -16,7 +16,7 @@ function renderFormAgregarZapatilla() {
     const nombre = document.getElementById('nombreZapatilla').value.trim();
     const precio = parseInt(document.getElementById('precioZapatilla').value);
     const imagen = document.getElementById('imagenZapatilla').value.trim();
-  if (!nombre || !precio || !imagen) return alert('Completa todos los campos');
+  if (!nombre || !precio || !imagen) return alert('Por favor, completa todos los campos para agregar tu zapatilla.');
   let productos = JSON.parse(localStorage.getItem('productos')) || [];
   // Asignar id único
   let maxId = productos.length ? Math.max(...productos.map(p => p.id || 0)) : 0;
@@ -25,7 +25,7 @@ function renderFormAgregarZapatilla() {
   localStorage.setItem('productos', JSON.stringify(productos));
   // Disparar evento storage para actualizar tienda
   window.dispatchEvent(new Event('storage'));
-  alert('Zapatilla agregada correctamente');
+  alert('¡Listo! Zapatilla agregada a la tienda.');
   renderFormAgregarZapatilla();
   };
 }
@@ -122,16 +122,16 @@ function editarProductoAdmin(idx) {
   let productos = JSON.parse(localStorage.getItem('productos')) || [];
   productos[idx] = { ...producto, nombre, precio, imagen };
   localStorage.setItem('productos', JSON.stringify(productos));
-  alert('Producto editado correctamente');
+  alert('¡Producto editado con éxito!');
   renderInventarioAdmin();
 }
 
 function eliminarProductoAdmin(idx) {
-  if (!confirm('¿Seguro que quieres eliminar este producto?')) return;
+  if (!confirm('¿Seguro que quieres eliminar este producto? Esta acción no se puede deshacer.')) return;
   let productos = JSON.parse(localStorage.getItem('productos')) || [];
   productos.splice(idx, 1);
   localStorage.setItem('productos', JSON.stringify(productos));
-  alert('Producto eliminado correctamente');
+  alert('Producto eliminado de la tienda.');
   renderInventarioAdmin();
 }
 document.getElementById('formInventario').onsubmit = function(e) {
@@ -143,7 +143,7 @@ document.getElementById('formInventario').onsubmit = function(e) {
   });
   localStorage.setItem('inventario', JSON.stringify(inventario));
   renderInventarioAdmin();
-  alert('Inventario actualizado');
+  alert('¡Inventario actualizado!');
 };
 renderInventarioAdmin();
 </script>
@@ -188,7 +188,7 @@ renderInventarioAdmin();
         document.getElementById('admin-login').style.display = 'none';
         document.getElementById('admin-menu').style.display = 'block';
       } else {
-        alert('Usuario o clave incorrectos');
+  alert('Usuario o clave incorrectos. Intenta de nuevo.');
       }
     };
     // Mantener sesión admin

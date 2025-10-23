@@ -1,22 +1,10 @@
-
-const productosBase = [
+window.productosBase = [
   {
-    id: 1,
-    nombre: "Air Jordan 3 Retro Black Cat",
-    precio: 280000,
-    imagen: "https://newcop.com/cdn/shop/files/01_ff7c9471-f6f5-470f-960b-08a527f6e8bf.png?height=600&v=1736528666"
-  },
-  {
-    id: 2,
-    nombre: "Adidas Campus 00S",
-    precio: 94990,
-    imagen: "https://newcop.com/cdn/shop/files/adidas-campus-00s-core-black-1_2000x_f891c99f-d7be-41e6-aa92-9000abde32d0.webp?v=1682784882"
-  },
-  {
-    id: 3,
-    nombre: "Nike Air Max 97",
-    precio: 159990,
-    imagen: "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/6a3671b8-f115-44f6-9ab6-3798d55210eb/custom-nike-air-max-97-shoes-by-you.png"
+    id: 21,
+    nombre: "Nike SB Dunk Low Pro",
+    precio: 120000,
+    imagen: "img/dunk-low-pro.png",
+    descripcion: "Siempre puedes contar con un clasico. Los Dunk Low combinan un estilo Color Block iconico con materiales premium y un acolchado suave para ofrecer una comodidad revolucionaria. Las posibilidades son infinitas. Como vas a usar tus Dunk?\n\nBeneficios:\n- La parte superior de cuero se suaviza y adquiere un caracter vintage con el uso.\n- La amortiguacion Air Zoom brinda un rapido despegue.\n- La suela de goma con el punto de pivote clasico aporta traccion duradera y un estilo de herencia.\n\nDatos del producto:\nCuello acolchado\nEntresuela de espuma\nColor que se muestra: Rojo team oscuro/Chaleco oliva/Beige paracaidas/Burdeos energico\nEstilo: HQ1625-600"
   },
   {
     id: 1,
@@ -37,22 +25,58 @@ const productosBase = [
     imagen: "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/6a3671b8-f115-44f6-9ab6-3798d55210eb/custom-nike-air-max-97-shoes-by-you.png"
   },
   {
-    id: 1,
-    nombre: "Air Jordan 3 Retro Black Cat",
-    precio: 280000,
-    imagen: "https://newcop.com/cdn/shop/files/01_ff7c9471-f6f5-470f-960b-08a527f6e8bf.png?height=600&v=1736528666"
+    id: 12,
+    nombre: "Puma Suede Classic",
+    precio: 69990,
+    imagen: "https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/352634/03/sv01/fnd/PNA/fmt/png/PUMA-Suede-Classic"
   },
   {
-    id: 2,
-    nombre: "Adidas Campus 00S",
-    precio: 94990,
-    imagen: "https://newcop.com/cdn/shop/files/adidas-campus-00s-core-black-1_2000x_f891c99f-d7be-41e6-aa92-9000abde32d0.webp?v=1682784882"
+    id: 13,
+    nombre: "Reebok Club C 85",
+    precio: 74990,
+    imagen: "https://cdn-images.farfetch-contents.com/23/10/69/09/23106909_53297455_2048.jpg"
   },
   {
-    id: 3,
-    nombre: "Nike Air Max 97",
-    precio: 159990,
-    imagen: "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/6a3671b8-f115-44f6-9ab6-3798d55210eb/custom-nike-air-max-97-shoes-by-you.png"
+    id: 14,
+    nombre: "New Balance 327",
+    precio: 99990,
+    imagen: "https://nb.scene7.com/is/image/NB/ms327cp_nb_02_i?$pdpflexf2$&wid=440&hei=440"
+  },
+  {
+    id: 15,
+    nombre: "Fila Disruptor II",
+    precio: 64990,
+    imagen: "https://fila.scene7.com/is/image/FilaUSA/5FM00553_125_01?$pdpflexf2$&wid=440&hei=440"
+  },
+  {
+    id: 16,
+    nombre: "Under Armour HOVR Phantom",
+    precio: 139990,
+    imagen: "https://underarmour.scene7.com/is/image/Underarmour/3022586-001_DEFAULT?wid=600&hei=600"
+  },
+  {
+    id: 17,
+    nombre: "Asics Gel-Lyte III",
+    precio: 109990,
+    imagen: "https://asics.scene7.com/is/image/asics/1191A266_020_SR_RT_GLB?$zoom$"
+  },
+  {
+    id: 18,
+    nombre: "Saucony Jazz Original Vintage",
+    precio: 89990,
+    imagen: "https://saucony.scene7.com/is/image/Saucony/2044-524_V_01?wid=600&hei=600"
+  },
+  {
+    id: 19,
+    nombre: "Mizuno Wave Rider 25",
+    precio: 129990,
+    imagen: "https://mizuno.scene7.com/is/image/Mizuno/411319_90_01?wid=600&hei=600"
+  },
+  {
+    id: 20,
+    nombre: "Jordan 1 Mid SE",
+    precio: 179990,
+    imagen: "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/6a3671b8-f115-44f6-9ab6-3798d55210eb/jordan-1-mid-se-shoes.png"
   },
   {
     id: 4,
@@ -93,69 +117,13 @@ const productosBase = [
   }
 ];
 
-let productosLS = JSON.parse(localStorage.getItem("productos")) || [];
-const idsBase = new Set(productosBase.map(p => p.id));
-let productos = [...productosBase];
-if (productosLS.length === 1) {
-  // Si solo hay un producto, restaurar catálogo base y sumarlo, y actualizar localStorage
-  let productosRestaurados = [...productosBase];
-  if (!idsBase.has(productosLS[0].id)) {
-    productosRestaurados.push(productosLS[0]);
-  }
-  localStorage.setItem("productos", JSON.stringify(productosRestaurados));
-  productos = productosRestaurados;
-  // Forzar recarga visual
-  setTimeout(() => window.location.reload(), 100);
-} else {
-  for (const prod of productosLS) {
-    if (!idsBase.has(prod.id)) {
-      productos.push(prod);
-    }
+// Si algún producto no tiene imagen, le ponemos una por defecto para que siempre se vea bien en la tienda
+for (let producto of window.productosBase) {
+  if (!producto.imagen || producto.imagen === "") {
+    producto.imagen = "img/default-shoe.png";
   }
 }
 
-function renderProductosDestacados() {
-  let productos = JSON.parse(localStorage.getItem("productos"));
-  if (!productos || !productos.length) {
-    productos = [
-      {
-        id: 1,
-        nombre: "Air Jordan 3 Retro Black Cat",
-        precio: 280000,
-        imagen: "https://newcop.com/cdn/shop/files/01_ff7c9471-f6f5-470f-960b-08a527f6e8bf.png?height=600&v=1736528666"
-      },
-      {
-        id: 2,
-        nombre: "Adidas Campus 00S",
-        precio: 94990,
-        imagen: "https://newcop.com/cdn/shop/files/adidas-campus-00s-core-black-1_2000x_f891c99f-d7be-41e6-aa92-9000abde32d0.webp?v=1682784882"
-      },
-      {
-        id: 3,
-        nombre: "Nike Air Max 97",
-        precio: 159990,
-        imagen: "https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/6a3671b8-f115-44f6-9ab6-3798d55210eb/custom-nike-air-max-97-shoes-by-you.png"
-      }
-    ];
-  }
-  const contenedor = document.getElementById("productos-destacados");
-  contenedor.classList.add("row", "g-4", "justify-content-center");
-  contenedor.innerHTML = productos.map((producto, idx) => `
-    <div class="col-md-4 d-flex align-items-stretch">
-      <div class="card card-producto h-100 w-100 d-flex flex-column">
-        <div class="d-flex align-items-center justify-content-center" style="min-height:260px;">
-          <img src="${producto.imagen}" class="card-img-top" style="max-height:220px; object-fit:contain;" alt="${producto.nombre}">
-        </div>
-        <div class="card-body text-center d-flex flex-column justify-content-end flex-grow-1">
-          <h5 class="card-title">${producto.nombre}</h5>
-          <p class="card-text fw-bold">$${producto.precio.toLocaleString()}</p>
-          <button class="btn btn-primary btn-sm w-100 mb-2" onclick="agregarCarrito(${producto.id || idx+1}, '${producto.nombre}', ${producto.precio}, '${producto.imagen}')">Agregar al carrito</button>
-          <a href="detalle-producto.html?id=${producto.id || idx+1}" class="btn btn-primary btn-sm mt-auto">Ver más</a>
-        </div>
-      </div>
-    </div>
-  `).join("");
-}
 
 renderProductosDestacados();
 
@@ -163,7 +131,7 @@ window.addEventListener("storage", function(e) {
   if (e.key === "productos") renderProductosDestacados();
 });
 
-// Función para agregar productos al carrito
+// Cuando el usuario agrega un producto al carrito, lo sumamos y actualizamos el localStorage
 function agregarCarrito(id, nombre, precio, imagen) {
   const productosIniciales = [
     {
@@ -227,11 +195,11 @@ function agregarCarrito(id, nombre, precio, imagen) {
   const idsBase = new Set(productosIniciales.map(p => p.id));
   let productosAdmin = Array.isArray(productos) ? productos.filter(p => !idsBase.has(p.id)) : [];
   let productosFinal = [...productosIniciales, ...productosAdmin];
-  // Eliminar duplicados de Air Jordan 4RM
+  // Si hay productos repetidos (por ejemplo, Air Jordan 4RM), dejamos solo uno
   productosFinal = productosFinal.filter((p, idx, arr) =>
     !(p.nombre === "Air Jordan 4RM" && arr.findIndex(x => x.nombre === "Air Jordan 4RM") !== idx)
   );
-  // Si faltan zapatillas base, forzar restauración y actualizar localStorage
+  // Si por algún motivo faltan zapatillas base, las restauramos y actualizamos el localStorage
   const nombresBase = productosIniciales.map(p => p.nombre);
   if (!productosFinal.some(p => p.nombre === nombresBase[0]) ||
       !productosFinal.some(p => p.nombre === nombresBase[1]) ||

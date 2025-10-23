@@ -37,7 +37,7 @@ formRegistro.addEventListener("submit", function (e) {
   }
 
   if (valido) {
-    alert("Usuario registrado con éxito");
+    alert("¡Te registraste correctamente! Ya puedes disfrutar de la tienda.");
     formRegistro.reset();
   }
 });

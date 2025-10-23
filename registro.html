@@ -9,9 +9,9 @@
 <body class="bg-white">
 
   <!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg bg-primary navbar-dark shadow-sm">
+  <nav class="navbar navbar-expand-lg bg-primary navbar-dark shadow-sm">
     <div class="container-fluid">
-  <a class="navbar-brand fw-bold" href="index.html">👟 Break Shoes</a>
+      <a class="navbar-brand fw-bold" href="index.html">👟 Break Shoes</a>
       <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -23,13 +23,16 @@
           <li class="nav-item"><a class="nav-link" href="blogs.html">Blogs</a></li>
           <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
         </ul>
-  </div>
-  <main class="container py-5 min-vh-100 d-flex flex-column justify-content-center align-items-center">
+      </div>
+    </div>
+  </nav>
+
+  <main class="bg-primary min-vh-100 d-flex flex-column justify-content-center align-items-center">
     <div class="row justify-content-center w-100">
-      <div class="col-md-7">
+      <div class="col-md-5 col-lg-4">
         <div class="card shadow-lg rounded-4">
           <div class="card-header text-center bg-light">
-            <h5 class="mb-0">Registro de usuario</h5>
+            <h5 class="mb-0">¡Crea tu cuenta y únete a la familia Break Shoes!</h5>
           </div>
           <div class="card-body">
             <form id="formRegistro">
@@ -62,23 +65,33 @@
                   <label for="region" class="form-label">Región</label>
                   <select class="form-select" id="region" required>
                     <option value="">- Seleccione la región -</option>
+                    <option value="Arica y Parinacota">Arica y Parinacota</option>
+                    <option value="Tarapacá">Tarapacá</option>
+                    <option value="Antofagasta">Antofagasta</option>
+                    <option value="Atacama">Atacama</option>
+                    <option value="Coquimbo">Coquimbo</option>
+                    <option value="Valparaíso">Valparaíso</option>
                     <option value="Metropolitana">Región Metropolitana de Santiago</option>
-                    <option value="Araucania">Región de la Araucanía</option>
-                    <option value="Ñuble">Región de Ñuble</option>
+                    <option value="O'Higgins">Libertador General Bernardo O'Higgins</option>
+                    <option value="Maule">Maule</option>
+                    <option value="Ñuble">Ñuble</option>
+                    <option value="Biobío">Biobío</option>
+                    <option value="Araucanía">Araucanía</option>
+                    <option value="Los Ríos">Los Ríos</option>
+                    <option value="Los Lagos">Los Lagos</option>
+                    <option value="Aysén">Aysén del General Carlos Ibáñez del Campo</option>
+                    <option value="Magallanes">Magallanes y de la Antártica Chilena</option>
                   </select>
                 </div>
                 <div class="col-md-6">
                   <label for="comuna" class="form-label">Comuna</label>
                   <select class="form-select" id="comuna" required>
                     <option value="">- Seleccione la comuna -</option>
-                    <option value="Linares">Linares</option>
-                    <option value="Longaví">Longaví</option>
-                    <option value="Concepción">Concepción</option>
                   </select>
                 </div>
               </div>
               <div class="d-grid">
-                <button type="submit" class="btn btn-outline-dark">REGISTRAR</button>
+                <button type="submit" class="btn btn-outline-dark">Registrarme ahora</button>
               </div>
             </form>
           </div>
@@ -90,11 +103,47 @@
   <!-- FOOTER -->
   <footer class="bg-primary text-white text-center py-4 mt-5 shadow-lg">
     <div class="container">
-  <p class="mb-0">&copy; 2025 Break Shoes - Todos los derechos reservados</p>
+  <p class="mb-0">&copy; 2025 Break Shoes - ¡Gracias por confiar en nosotros!</p>
     </div>
   </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// Regiones y comunas de Chile
+const regionesComunas = {
+  "Arica y Parinacota": ["Arica", "Camarones", "Putre", "General Lagos"],
+  "Tarapacá": ["Iquique", "Alto Hospicio", "Pozo Almonte", "Camiña", "Colchane", "Huara", "Pica"],
+  "Antofagasta": ["Antofagasta", "Mejillones", "Sierra Gorda", "Taltal", "Calama", "Ollagüe", "San Pedro de Atacama", "Tocopilla", "María Elena"],
+  "Atacama": ["Copiapó", "Caldera", "Tierra Amarilla", "Chañaral", "Diego de Almagro", "Vallenar", "Alto del Carmen", "Freirina", "Huasco"],
+  "Coquimbo": ["La Serena", "Coquimbo", "Andacollo", "La Higuera", "Paiguano", "Vicuña", "Illapel", "Canela", "Los Vilos", "Salamanca", "Ovalle", "Combarbalá", "Monte Patria", "Punitaqui", "Río Hurtado"],
+  "Valparaíso": ["Valparaíso", "Casablanca", "Concón", "Juan Fernández", "Puchuncaví", "Quintero", "Viña del Mar", "Isla de Pascua", "Los Andes", "Calle Larga", "Rinconada", "San Esteban", "La Ligua", "Cabildo", "Papudo", "Petorca", "Zapallar", "Quillota", "La Calera", "La Cruz", "Nogales", "San Antonio", "Algarrobo", "Cartagena", "El Quisco", "El Tabo", "Santo Domingo", "San Felipe", "Catemu", "Llay Llay", "Panquehue", "Putaendo", "Santa María"],
+  "Metropolitana": ["Cerrillos", "Cerro Navia", "Conchalí", "El Bosque", "Estación Central", "Huechuraba", "Independencia", "La Cisterna", "La Florida", "La Granja", "La Pintana", "La Reina", "Las Condes", "Lo Barnechea", "Lo Espejo", "Lo Prado", "Macul", "Maipú", "Ñuñoa", "Pedro Aguirre Cerda", "Peñalolén", "Providencia", "Pudahuel", "Puente Alto", "Quilicura", "Quinta Normal", "Recoleta", "Renca", "San Joaquín", "San Miguel", "San Ramón", "Vitacura", "Pirque", "Puente Alto", "San José de Maipo", "Colina", "Lampa", "Tiltil", "Buin", "Calera de Tango", "Paine", "San Bernardo", "Alhué", "Curacaví", "María Pinto", "Melipilla", "San Pedro", "Talagante", "El Monte", "Isla de Maipo", "Padre Hurtado", "Peñaflor"],
+  "O'Higgins": ["Rancagua", "Codegua", "Coinco", "Coltauco", "Doñihue", "Graneros", "Las Cabras", "Machalí", "Malloa", "Mostazal", "Olivar", "Peumo", "Pichidegua", "Quinta de Tilcoco", "Rengo", "Requínoa", "San Vicente", "Pichilemu", "La Estrella", "Litueche", "Marchihue", "Navidad", "Paredones", "San Fernando", "Chépica", "Chimbarongo", "Lolol", "Nancagua", "Palmilla", "Peralillo", "Placilla", "Pumanque", "Santa Cruz"],
+  "Maule": ["Talca", "Constitución", "Curepto", "Empedrado", "Maule", "Pelarco", "Pencahue", "Río Claro", "San Clemente", "San Rafael", "Cauquenes", "Chanco", "Pelluhue", "Curicó", "Hualañé", "Licantén", "Molina", "Rauco", "Romeral", "Sagrada Familia", "Teno", "Vichuquén", "Linares", "Colbún", "Longaví", "Parral", "Retiro", "San Javier", "Villa Alegre", "Yerbas Buenas"],
+  "Ñuble": ["Cobquecura", "Coelemu", "Ninhue", "Portezuelo", "Quirihue", "Ránquil", "Treguaco", "Bulnes", "Chillán", "Chillán Viejo", "El Carmen", "Pemuco", "Pinto", "Quillón", "San Ignacio", "Yungay", "San Carlos", "San Fabián", "San Nicolás"],
+  "Biobío": ["Concepción", "Coronel", "Chiguayante", "Florida", "Hualqui", "Lota", "Penco", "San Pedro de la Paz", "Santa Juana", "Talcahuano", "Tomé", "Hualpén", "Lebu", "Arauco", "Cañete", "Contulmo", "Curanilahue", "Los Álamos", "Tirúa", "Los Ángeles", "Antuco", "Cabrero", "Laja", "Mulchén", "Nacimiento", "Negrete", "Quilaco", "Quilleco", "San Rosendo", "Santa Bárbara", "Tucapel", "Yumbel", "Alto Biobío"],
+  "Araucanía": ["Temuco", "Carahue", "Cunco", "Curarrehue", "Freire", "Galvarino", "Gorbea", "Lautaro", "Loncoche", "Melipeuco", "Nueva Imperial", "Padre Las Casas", "Perquenco", "Pitrufquén", "Pucón", "Saavedra", "Teodoro Schmidt", "Toltén", "Vilcún", "Villarrica", "Cholchol", "Angol", "Collipulli", "Ercilla", "Lonquimay", "Los Sauces", "Purén", "Renaico", "Traiguén", "Victoria"],
+  "Los Ríos": ["Valdivia", "Corral", "Lanco", "Los Lagos", "Máfil", "Mariquina", "Paillaco", "Panguipulli", "La Unión", "Futrono", "Lago Ranco", "Río Bueno"],
+  "Los Lagos": ["Puerto Montt", "Calbuco", "Cochamó", "Fresia", "Frutillar", "Los Muermos", "Llanquihue", "Maullín", "Puerto Varas", "Castro", "Chonchi", "Curaco de Vélez", "Dalcahue", "Puqueldón", "Queilén", "Quellón", "Quemchi", "Quinchao", "Osorno", "Puerto Octay", "Purranque", "Puyehue", "Río Negro", "San Juan de la Costa", "San Pablo"],
+  "Aysén": ["Coyhaique", "Lago Verde", "Aysén", "Cisnes", "Guaitecas", "Río Ibáñez", "Chile Chico", "Cochrane", "O'Higgins", "Tortel"],
+  "Magallanes": ["Punta Arenas", "Laguna Blanca", "Río Verde", "San Gregorio", "Cabo de Hornos", "Antártica", "Porvenir", "Primavera", "Timaukel", "Natales", "Torres del Paine"]
+};
+
+document.getElementById('region').addEventListener('change', function() {
+  const region = this.value;
+  const comunaSelect = document.getElementById('comuna');
+  comunaSelect.innerHTML = '<option value="">- Seleccione la comuna -</option>';
+  if (regionesComunas[region]) {
+    regionesComunas[region].forEach(comuna => {
+      const option = document.createElement('option');
+      option.value = comuna;
+      option.textContent = comuna;
+      comunaSelect.appendChild(option);
+    });
+  }
+});
+</script>
 <script>
 function mostrarUsuarioNavbar() {
   const usuarioDiv = document.getElementById("usuario-navbar");

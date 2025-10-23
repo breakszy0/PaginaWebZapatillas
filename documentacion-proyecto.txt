@@ -1,0 +1,32 @@
+
+Tienda de Zapatillas - Resumen del Proyecto
+===========================================
+
+¿Qué es este proyecto?
+----------------------
+Es una tienda online de zapatillas hecha para que cualquier persona pueda ver modelos, agregarlos a un carrito y simular una compra. Todo está hecho con HTML, CSS, JavaScript y un poco de Bootstrap para que se vea bien en cualquier dispositivo.
+
+¿Cómo funciona?
+---------------
+Al entrar, puedes ver el catálogo de zapatillas, cada una con su foto, precio y descripción. Si te gusta alguna, la agregas al carrito. El carrito se guarda en tu navegador, así que aunque recargues la página, tus productos siguen ahí.
+
+Si eres administrador, tienes páginas especiales para agregar, editar o eliminar productos y usuarios. Así puedes mantener la tienda actualizada fácilmente.
+
+¿Qué archivos son importantes?
+------------------------------
+- `productos.js`: Aquí están todos los productos, con sus datos e imágenes.
+- Páginas HTML como `index.html`, `productos.html`, `carrito.html`, etc. Cada una muestra una parte distinta de la tienda.
+- `styles.css`: El estilo personalizado para que todo se vea moderno.
+- `validaciones.js`: Se encarga de que los formularios estén bien llenados.
+
+¿Qué tecnologías se usan?
+-------------------------
+- HTML5 para la estructura.
+- CSS3 y Bootstrap para el diseño.
+- JavaScript para que todo sea interactivo y se guarde el carrito.
+
+¿Quién hizo esto?
+-----------------
+Proyecto realizado por Alfredo Ibaceta.
+1. El usuario navega por el catálogo y puede ver detalles de cada zapatilla.
+

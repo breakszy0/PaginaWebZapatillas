@@ -11,7 +11,7 @@
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg bg-primary navbar-dark shadow-sm">
     <div class="container-fluid">
-  <a class="navbar-brand fw-bold" href="index.html">👟 Break Shoes</a>
+      <a class="navbar-brand fw-bold" href="index.html">👟 Break Shoes</a>
       <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -24,147 +24,54 @@
           <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
         </ul>
         <div class="d-flex gap-2">
-            <a class="btn btn-outline-light btn-sm" href="carrito.html">🛒 Cart <span class="badge bg-danger" id="cart-count">0</span></a>
+          <a class="btn btn-outline-light btn-sm" href="carrito.html">🛒 Cart <span class="badge bg-danger" id="cart-count">0</span></a>
           <span id="usuario-navbar"></span>
         </div>
       </div>
     </div>
   </nav>
 
-    <div class="d-flex justify-content-center mb-4">
-      <button class="btn btn-outline-dark btn-sm fw-bold" data-bs-toggle="modal" data-bs-target="#modalRegistro">REGISTRAR</button>
-    </div>
-  <div class="container py-5">
-    <h2 class="text-center mb-5">¿Quiénes somos?</h2>
-    <div class="row g-4 align-items-center mb-5">
-<!-- Modal Registro Usuario -->
-<div class="modal fade" id="modalRegistro" tabindex="-1" aria-labelledby="modalRegistroLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalRegistroLabel">Registro de usuario</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="formRegistroModal">
-          <div class="mb-3">
-            <label for="nombreModal" class="form-label">NOMBRE COMPLETO</label>
-            <input type="text" class="form-control" id="nombreModal" required>
+  <main class="container py-5 min-vh-100 d-flex flex-column justify-content-center align-items-center">
+    <div class="row justify-content-center w-100">
+      <div class="col-lg-10">
+  <h2 class="text-center mb-5">¡Conócenos! Somos Break Shoes</h2>
+        <div class="row g-4 align-items-center mb-5">
+          <div class="col-md-6">
+            <video class="img-fluid rounded shadow w-100" controls autoplay loop muted poster="https://via.placeholder.com/600x400?text=Tienda+Zapatillas">
+              <source src="https://media.about.nike.com/files/28fdbc1e-09a7-46b1-9320-b3417ab98634/NIKE_COMPANY_loop_032323.mp4" type="video/mp4">
+              Tu navegador no soporta el video.
+            </video>
           </div>
-          <div class="mb-3">
-            <label for="correo1Modal" class="form-label">CORREO</label>
-            <input type="email" class="form-control" id="correo1Modal" required>
+          <div class="col-md-6">
+            <h4 class="fw-bold">Misión</h4>
+            <p>Nuestra misión es ofrecerte las mejores zapatillas deportivas, con calidad, precio justo y un servicio rápido y cercano para cada persona en Chile.</p>
+            <h4 class="fw-bold mt-4">Visión</h4>
+            <p>Queremos ser la tienda online número 1 de zapatillas deportivas en Chile, reconocidos por nuestra innovación, confianza y pasión por el deporte y la moda.</p>
+            <h4 class="fw-bold mt-4">Valores</h4>
+            <ul>
+              <li>Compromiso real con cada cliente</li>
+              <li>Calidad en cada zapatilla</li>
+              <li>Transparencia y honestidad siempre</li>
+              <li>Pasión por el deporte y la moda</li>
+            </ul>
           </div>
-          <div class="mb-3">
-            <label for="correo2Modal" class="form-label">CORREO</label>
-            <input type="email" class="form-control" id="correo2Modal" required>
+        </div>
+        <!-- Equipo -->
+  <h4 class="text-center mb-4">Nuestro equipo</h4>
+        <div class="row g-4 text-center">
+          <div class="col-12 d-flex flex-column align-items-center justify-content-center">
+            <h5 class="fw-bold mb-1">Alfredo Ibaceta</h5>
+            <p class="text-muted">CEO & Fundador</p>
           </div>
-          <div class="mb-3">
-            <label for="password1Modal" class="form-label">CONTRASEÑA</label>
-            <input type="password" class="form-control" id="password1Modal" required>
-          </div>
-          <div class="mb-3">
-            <label for="password2Modal" class="form-label">CONFIRMAR CONTRASEÑA</label>
-            <input type="password" class="form-control" id="password2Modal" required>
-          </div>
-          <div class="mb-3">
-            <label for="telefonoModal" class="form-label">TELÉFONO (opcional)</label>
-            <input type="text" class="form-control" id="telefonoModal">
-          </div>
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="regionModal" class="form-label">Región</label>
-              <select class="form-select" id="regionModal" required>
-                <option value="">- Seleccione la región -</option>
-                <option value="Metropolitana">Región Metropolitana de Santiago</option>
-                <option value="Araucania">Región de la Araucanía</option>
-                <option value="Ñuble">Región de Ñuble</option>
-              </select>
-            </div>
-            <div class="col-md-6">
-              <label for="comunaModal" class="form-label">Comuna</label>
-              <select class="form-select" id="comunaModal" required>
-                <option value="">- Seleccione la comuna -</option>
-                <option value="Linares">Linares</option>
-                <option value="Longaví">Longaví</option>
-                <option value="Concepción">Concepción</option>
-              </select>
-            </div>
-          </div>
-          <div class="d-grid">
-            <button type="submit" class="btn btn-outline-dark">REGISTRAR</button>
-          </div>
-        </form>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<script>
-// Registro desde modal
-document.getElementById("formRegistroModal").addEventListener("submit", function(e) {
-  e.preventDefault();
-  const nombre = document.getElementById("nombreModal").value;
-  const correo1 = document.getElementById("correo1Modal").value;
-  const correo2 = document.getElementById("correo2Modal").value;
-  const password1 = document.getElementById("password1Modal").value;
-  const password2 = document.getElementById("password2Modal").value;
-  const telefono = document.getElementById("telefonoModal").value;
-  const region = document.getElementById("regionModal").value;
-  const comuna = document.getElementById("comunaModal").value;
-  if (correo1 !== correo2) {
-    alert("Los correos no coinciden.");
-    return;
-  }
-  if (password1 !== password2) {
-    alert("Las contraseñas no coinciden.");
-    return;
-  }
-  let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-  if (usuarios.some(u => u.correo === correo1)) {
-    alert("Ya existe un usuario registrado con ese correo.");
-    return;
-  }
-  usuarios.push({ nombre, correo: correo1, clave: password1, telefono, region, comuna });
-  localStorage.setItem("usuarios", JSON.stringify(usuarios));
-  alert("Usuario registrado con éxito.");
-  document.getElementById("formRegistroModal").reset();
-  var modal = bootstrap.Modal.getInstance(document.getElementById('modalRegistro'));
-  modal.hide();
-});
-</script>
-      <div class="col-md-6">
-        <img src="https://via.placeholder.com/600x400?text=Tienda+Zapatillas" class="img-fluid rounded shadow" alt="Nosotros">
-      </div>
-      <div class="col-md-6">
-        <h4 class="fw-bold">Misión</h4>
-        <p>Ofrecer las mejores zapatillas deportivas del mercado, combinando <strong>calidad, precio justo y servicio rápido</strong> para cada cliente en Chile.</p>
-        <h4 class="fw-bold mt-4">Visión</h4>
-        <p>Ser la tienda online número 1 de zapatillas deportivas en el país, reconocida por nuestra <strong>innovación, confianza y pasión por el deporte</strong>.</p>
-        <h4 class="fw-bold mt-4">Valores</h4>
-        <ul>
-          <li>Compromiso con el cliente</li>
-          <li>Calidad en cada producto</li>
-          <li>Transparencia y honestidad</li>
-          <li>Amor por el deporte y la moda</li>
-        </ul>
-      </div>
-    </div>
-    <!-- Equipo -->
-    <h4 class="text-center mb-4">Equipo detrás de Break Shoes</h4>
-    <div class="row g-4 text-center">
-      <div class="col-md-4">
-        <img src="https://via.placeholder.com/150x150?text=Juan+Pérez" class="rounded-circle mb-3" alt="Juan">
-        <h5>Alfredo Ibaceta</h5>
-        <p class="text-muted">CEO & Fundador</p>
-      </div>
-      </div>
-    </div>
-  </div>
+  </main>
 
   <!-- FOOTER -->
   <footer class="bg-primary text-white text-center py-4 mt-5 shadow-lg">
     <div class="container">
-  <p class="mb-0">&copy; 2025 Break Shoes - Todos los derechos reservados</p>
+  <p class="mb-0">&copy; 2025 Break Shoes - ¡Gracias por ser parte de nuestra historia!</p>
     </div>
   </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
