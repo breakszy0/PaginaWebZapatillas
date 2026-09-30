@@ -1,6 +1,6 @@
 # 👟 Catálogo Web de Zapatillas
 
-[![Ver Página en Vivo](https://img.shields.io/badge/Ver_Proyecto-En_Vivo-success)](https://breakszy0.github.io/PaginaWebZapatillas/)
+[![Ver Página en Vivo](https://breakszy0.github.io/PaginaWebZapatillas/)
 
 ## 📝 Sobre el Proyecto
 Desarrollo de una interfaz web estructurada para una tienda de zapatillas. El proyecto se centra en aplicar buenas prácticas de maquetado, accesibilidad y experiencia de usuario en el frontend, garantizando una navegación fluida y validación de datos en tiempo real.
