@@ -1,15 +1,20 @@
-# Explicación de estructura semántica y CSS externo
+# 👟 Catálogo Web de Zapatillas
 
-Este proyecto utiliza la estructura y etiquetas de la versión actual de HTML, incluyendo:
-- `header`, `nav`, `main`, `section`, `footer` para una semántica clara y accesible.
-- Navegación por hiperlinks entre todas las páginas principales.
-- Imágenes, botones y formularios con validaciones personalizadas.
+[![Ver Página en Vivo](https://img.shields.io/badge/Ver_Proyecto-En_Vivo-success)](https://breakszy0.github.io/PaginaWebZapatillas/)
 
-El archivo `styles.css` se enlaza de forma externa en todas las páginas, permitiendo una interfaz atractiva y funcional, y facilitando el mantenimiento.
+## 📝 Sobre el Proyecto
+Desarrollo de una interfaz web estructurada para una tienda de zapatillas. El proyecto se centra en aplicar buenas prácticas de maquetado, accesibilidad y experiencia de usuario en el frontend, garantizando una navegación fluida y validación de datos en tiempo real.
 
-## Validaciones y experiencia de usuario
-- Todos los formularios (contacto, registro, login) tienen validaciones controladas por JavaScript, mostrando mensajes personalizados y sugerencias para mejorar la experiencia del usuario.
+## 🛠️ Tecnologías y Prácticas Aplicadas
+* **HTML5 Semántico:** Implementación estricta de etiquetas (`<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`) para asegurar una estructura clara, accesible y escalable.
+* **CSS3:** Estilos manejados mediante un archivo `styles.css` externo para mantener el código modular, facilitando el mantenimiento y la separación de intereses.
+* **JavaScript (Vanilla):** Lógica de control en el lado del cliente para validaciones de formularios (contacto, registro y login), proporcionando feedback inmediato y mensajes personalizados al usuario.
+* **Control de Versiones:** Gestión del historial de desarrollo mediante Git y GitHub.
 
-## Repositorio remoto y colaboración
-- Se recomienda usar un repositorio remoto (GitHub, GitLab) para gestionar los cambios, comentar los commits y trabajar colaborativamente.
-- Justifica la importancia de la colaboración y el control de versiones para mantener la coherencia y eficiencia en el desarrollo
+## 🚀 Funcionalidades Principales
+* Interfaz completamente funcional con navegación por hipervínculos entre páginas.
+* Formularios interactivos que previenen el envío de datos erróneos mediante validación JS.
+* Arquitectura de archivos limpia (separación estricta de HTML, CSS y JS).
+
+## 👨‍💻 Autor
+**Alfredo Ibaceta** - Estudiante de Ingeniería Informática
